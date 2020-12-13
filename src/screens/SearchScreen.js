@@ -1,14 +1,28 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import SearchBox from "../components/SearchBox";
 
 const SearchScreen = () => {
-    return (
-        <View>
-            <Text>Search Screen</Text>
-        </View>
-    )
-}
+  const [searchQuery, setSearchQuery] = useState("");
 
-export default SearchScreen
+  return (
+    <View style={styles.appWrapper}>
+      <SearchBox
+        query={searchQuery}
+        handleOnSearch={q => setSearchQuery(q)}
+        handleOnSubmit={() => console.log("Submitted the Form")}
+      />
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default SearchScreen;
+
+const styles = StyleSheet.create({
+  appWrapper: {
+    display: "flex",
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 16
+  }
+});
