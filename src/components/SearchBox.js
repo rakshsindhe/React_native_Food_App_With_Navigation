@@ -20,7 +20,6 @@ const SearchBox = ({ query, handleOnSearch, handleOnSubmit }) => {
         onChangeText={handleOnSearch}
         onEndEditing={handleOnSubmit}
       ></TextInput>
-      <Text>{query}</Text>
     </View>
   );
 };
@@ -46,6 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "#2b3a42",
     height: 50,
-    position: "relative"
+    position: "relative",
+    marginBottom: 16
   }
 });
