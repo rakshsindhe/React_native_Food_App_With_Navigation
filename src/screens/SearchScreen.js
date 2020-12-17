@@ -10,9 +10,6 @@ const SearchScreen = () => {
 
   const filterRestaurantByPrice = price => {
     return restaurants.filter(restaurant => {
-      if (restaurant.price === "$$$") {
-        console.log("BIG SPENDER = ", JSON.stringify(restaurant, undefined, 2));
-      }
       return restaurant.price === price;
     });
   };
@@ -30,18 +27,24 @@ const SearchScreen = () => {
         style={styles.catalogueWrapper}
         showsVerticalScrollIndicator={false}
       >
-        <FoodCatalogue
-          title={"Cost Effective"}
-          data={filterRestaurantByPrice("$")}
-        />
-        <FoodCatalogue
-          title={"Bit Pricier"}
-          data={filterRestaurantByPrice("$$")}
-        />
-        <FoodCatalogue
-          title={"Big Spender"}
-          data={filterRestaurantByPrice("$$$")}
-        />
+        {filterRestaurantByPrice("$").length > 0 && (
+          <FoodCatalogue
+            title={"Cost Effective"}
+            data={filterRestaurantByPrice("$")}
+          />
+        )}
+        {filterRestaurantByPrice("$$").length > 0 && (
+          <FoodCatalogue
+            title={"Bit Pricier"}
+            data={filterRestaurantByPrice("$$")}
+          />
+        )}
+        {filterRestaurantByPrice("$$$").length > 0 && (
+          <FoodCatalogue
+            title={"Big Spender"}
+            data={filterRestaurantByPrice("$$$")}
+          />
+        )}
       </ScrollView>
     </View>
   );

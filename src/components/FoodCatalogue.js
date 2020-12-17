@@ -1,8 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import RestaturantDetails from "./RestaturantDetails";
+import { withNavigation } from "react-navigation";
 
-const FoodCatalogue = ({ title, data }) => {
+const FoodCatalogue = ({ title, data, navigation }) => {
   return (
     <View style={styles.catalogue}>
       <View style={styles.catalogueTitleSection}>
@@ -15,7 +23,13 @@ const FoodCatalogue = ({ title, data }) => {
           keyExtractor={restaurant => restaurant.id}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
-            return <RestaturantDetails restaurant={item} />;
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("FoodCatalogueDetails", {id: item.id})}
+              >
+                <RestaturantDetails restaurant={item} />
+              </TouchableOpacity>
+            );
           }}
         />
       </View>
@@ -23,7 +37,7 @@ const FoodCatalogue = ({ title, data }) => {
   );
 };
 
-export default FoodCatalogue;
+export default withNavigation(FoodCatalogue);
 
 const styles = StyleSheet.create({
   catalogue: {
